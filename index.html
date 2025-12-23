@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MediaPro Academy - Formation Montage Vidéo</title>
+    <title>MediaPro Academy - Formation Montage Vidéo | Promo Noël 🎄</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
         * {
             margin: 0;
             padding: 0;
@@ -12,19 +14,48 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #333;
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1a3e 50%, #0d1b2a 100%);
+            color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
+        /* Neige animée */
+        .snowflakes {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: #fff;
+            font-size: 2em;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotateZ(360deg);
+            }
+        }
+
+        /* Header */
         header {
-            background: rgba(0, 0, 0, 0.95);
+            background: linear-gradient(135deg, rgba(180, 0, 0, 0.95) 0%, rgba(139, 0, 0, 0.95) 100%);
             padding: 20px 0;
-            border-bottom: 3px solid #0088ff;
+            border-bottom: 3px solid #FFD700;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
         }
 
         .header-container {
@@ -37,16 +68,19 @@
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            color: #fff;
+            color: #FFD700;
             display: flex;
             align-items: center;
             gap: 10px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            animation: glow 2s ease-in-out infinite;
         }
 
-        .logo span {
-            color: #0088ff;
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(255, 215, 0, 0.6); }
+            50% { text-shadow: 0 0 40px rgba(255, 215, 0, 0.9); }
         }
 
         nav a {
@@ -54,82 +88,221 @@
             text-decoration: none;
             margin-left: 30px;
             font-size: 14px;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            position: relative;
         }
 
-        nav a:hover {
-            color: #0088ff;
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #FFD700;
+            transition: width 0.3s;
         }
 
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #1a1a3e 100%);
             color: #fff;
-            padding: 80px 20px;
+            padding: 120px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 50%, rgba(255, 0, 0, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
         .hero-container {
             max-width: 1200px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
+            position: relative;
+            z-index: 3;
+            animation: slideInUp 0.8s ease-out;
         }
 
-        .hero-left h1 {
-            font-size: 48px;
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-size: 56px;
             margin-bottom: 20px;
             line-height: 1.2;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF6B6B 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            animation: pulse 2s ease-in-out infinite;
         }
 
-        .hero-left h1 span {
-            color: #0088ff;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
         }
 
-        .hero-left p {
-            font-size: 18px;
-            color: #ccc;
+        .hero p {
+            font-size: 20px;
+            color: #e0e0e0;
             margin-bottom: 30px;
             line-height: 1.8;
         }
 
         .cta-button {
             display: inline-block;
-            background: #0088ff;
-            color: #fff;
-            padding: 16px 40px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #FF6B6B 0%, #FFD700 100%);
+            color: #000;
+            padding: 18px 50px;
+            border-radius: 50px;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
+            font-weight: 700;
+            font-size: 18px;
             transition: all 0.3s;
             border: none;
             cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s;
         }
 
         .cta-button:hover {
-            background: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 136, 255, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 107, 0.6);
         }
 
-        .hero-right {
+        .cta-button:hover:before {
+            left: 100%;
+        }
+
+        /* Slides Section */
+        .slides-section {
+            background: linear-gradient(135deg, #0d0d1f 0%, #1a1a3e 100%);
+            padding: 80px 20px;
             position: relative;
+            z-index: 2;
         }
 
-        .hero-image {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0, 136, 255, 0.3);
-            object-fit: cover;
-            height: 500px;
+        .slides-container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
+        .slides-container h2 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .slider {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(255, 107, 107, 0.3);
+        }
+
+        .slide {
+            display: none;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(180, 0, 0, 0.1) 0%, rgba(139, 0, 0, 0.05) 100%);
+            border: 2px solid #FFD700;
+            border-radius: 20px;
+            animation: fadeIn 0.5s ease-in;
+            text-align: center;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .slide h3 {
+            font-size: 32px;
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .slide p {
+            font-size: 18px;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .slide-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .slider-nav {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .slider-dot {
+            height: 12px;
+            width: 12px;
+            margin: 0 8px;
+            background-color: rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #FFD700;
+        }
+
+        .slider-dot.active {
+            background-color: #FFD700;
+            transform: scale(1.3);
+        }
+
+        /* Features Section */
         .features {
-            background: #f5f5f5;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, #1a0000 0%, #2d0000 50%, #1a1a3e 100%);
+            padding: 80px 20px;
+            position: relative;
+            z-index: 2;
         }
 
         .features-container {
@@ -139,213 +312,188 @@
 
         .features h2 {
             text-align: center;
-            font-size: 36px;
-            margin-bottom: 50px;
-            color: #1a1a2e;
+            font-size: 42px;
+            margin-bottom: 60px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
         .feature-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 107, 107, 0.1) 100%);
+            padding: 40px;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
+            border: 2px solid #FFD700;
+            box-shadow: 0 10px 40px rgba(255, 107, 107, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            transition: all 0.3s;
         }
 
         .feature-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.4);
+            border-color: #FFA500;
+        }
+
+        .feature-card:hover:before {
+            top: -25%;
+            right: -25%;
         }
 
         .feature-icon {
-            font-size: 40px;
+            font-size: 48px;
             margin-bottom: 15px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .feature-card h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #0088ff;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #FFD700;
         }
 
         .feature-card p {
-            color: #666;
+            color: #ddd;
             font-size: 14px;
         }
 
-        .form-section {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 80px 20px;
-            color: #fff;
-        }
-
-        .form-container {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-section h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .form-section p {
-            text-align: center;
-            font-size: 16px;
-            color: #ccc;
-            margin-bottom: 40px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 14px;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #333;
-            border-radius: 6px;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.95);
-            color: #333;
-            font-family: inherit;
-        }
-
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #0088ff;
-            box-shadow: 0 0 0 3px rgba(0, 136, 255, 0.2);
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        .form-checkbox {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 20px;
-            font-size: 13px;
-            color: #ccc;
-        }
-
-        .form-checkbox input {
-            width: auto;
-            margin: 0;
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: #0088ff;
-            color: #fff;
-            padding: 14px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            margin-top: 20px;
-        }
-
-        .submit-btn:hover {
-            background: #0066cc;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 136, 255, 0.4);
-        }
-
-        .success-message {
-            display: none;
-            background: #4caf50;
-            color: #fff;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .success-message.show {
-            display: block;
-        }
-
+        /* Price Section */
         .price-section {
-            background: #f5f5f5;
-            padding: 60px 20px;
+            background: linear-gradient(135deg, #0d0d1f 0%, #1a1a3e 100%);
+            padding: 80px 20px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
 
         .price-section h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-            color: #1a1a2e;
+            font-size: 42px;
+            margin-bottom: 50px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
         }
 
         .price-box {
-            background: #fff;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 400px;
+            background: linear-gradient(135deg, rgba(180, 0, 0, 0.2) 0%, rgba(139, 0, 0, 0.1) 100%);
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
             margin: 0 auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            border-top: 4px solid #0088ff;
+            box-shadow: 0 20px 60px rgba(255, 215, 0, 0.3);
+            border: 3px solid #FFD700;
+            animation: slideInUp 0.8s ease-out;
         }
 
         .price-box h3 {
-            color: #0088ff;
-            font-size: 28px;
-            margin-bottom: 15px;
+            color: #FFD700;
+            font-size: 36px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+
+        .price-tag {
+            font-size: 48px;
+            color: #FF6B6B;
+            font-weight: 700;
+            margin: 20px 0;
+            text-shadow: 0 0 20px rgba(255, 107, 107, 0.5);
         }
 
         .price-box p {
-            color: #666;
-            margin-bottom: 10px;
+            color: #ddd;
+            margin: 12px 0;
+            font-size: 16px;
         }
 
+        .promo-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #000;
+            padding: 10px 30px;
+            border-radius: 50px;
+            font-weight: 700;
+            margin-top: 20px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #25D366 0%, #20BA61 100%);
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            margin-top: 30px;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* Footer */
         footer {
-            background: #000;
+            background: linear-gradient(135deg, #0a0a15 0%, #1a1a2e 100%);
             color: #999;
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
-            border-top: 2px solid #0088ff;
+            border-top: 2px solid #FFD700;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 -10px 40px rgba(255, 215, 0, 0.2);
         }
 
         .contact-info {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
         }
 
         .contact-info a {
-            color: #0088ff;
+            color: #FFD700;
             text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
         }
 
         .contact-info a:hover {
-            text-decoration: underline;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
-            .hero-container {
-                grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .hero-left h1 {
-                font-size: 32px;
+            .hero h1 {
+                font-size: 36px;
             }
 
             nav {
@@ -355,213 +503,244 @@
             .features-grid {
                 grid-template-columns: 1fr;
             }
+
+            .slide {
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Neige animée -->
+    <div class="snowflakes" id="snowflakes"></div>
+
+    <!-- Header -->
     <header>
         <div class="header-container">
             <div class="logo">
-                🎬 <span>MediaPro</span> Academy
+                🎬 MediaPro Academy 🎄
             </div>
             <nav>
-                <a href="#features">Avantages</a>
-                <a href="#program">Programme</a>
-                <a href="#form">S'inscrire</a>
+                <a href="#slides">Avantages</a>
+                <a href="#features">Programme</a>
+                <a href="#price">Prix</a>
                 <a href="#contact">Contact</a>
             </nav>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="hero">
         <div class="hero-container">
-            <div class="hero-left">
-                <h1>Deviens <span>Monteur Professionnel</span> en 1 Mois</h1>
-                <p>Apprends Adobe Premiere Pro, Color Grading, Audio Mix avec des experts du domaine. Stage gratuit + Portfolio professionnel inclus.</p>
-                <button class="cta-button" onclick="document.getElementById('form').scrollIntoView({behavior: 'smooth'})">S'inscrire Maintenant</button>
-            </div>
-            <div class="hero-right">
-                            <div class="hero-right">
-                <img src="https://agi-prod-file-upload-public-main-use1.s3.amazonaws.com/e1f93412-dc1d-4004-996f-7406dd5fae67" alt="Formation Montage" class="hero-image">
+            <h1>🎄 Deviens Monteur Pro en 1 Mois 🎄</h1>
+            <p>PROMO NOËL EXCLUSIVE: Apprends Adobe Premiere Pro, Color Grading, Audio Mix avec des experts.</p>
+            <p>Stage gratuit + Portfolio professionnel + Certificat reconnu!</p>
+            
+            <a href="https://wa.me/212651379376?text=Bonjour%2C%20je%20suis%20intéressé%20par%20la%20formation%20MediaPro%20Academy.%20Pouvez-vous%20me%20donner%20plus%20de%20détails%20%3F" class="whatsapp-button">
+                📱 Parlez avec nous sur WhatsApp
+            </a>
+        </div>
+    </section>
+
+    <!-- Slides Section -->
+    <section class="slides-section" id="slides">
+        <div class="slides-container">
+            <h2>✨ Pourquoi MediaPro Academy? ✨</h2>
+            
+            <div class="slider">
+                <div class="slide active">
+                    <div class="slide-icon">👨‍🏫</div>
+                    <h3>Experts Réels</h3>
+                    <p>Formateurs avec expérience YouTube, TV et agences publicitaires. Apprentissage de vrais professionnels!</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">🎬</div>
+                    <h3>Projets Pratiques</h3>
+                    <p>Travaillez sur des cas réels et construisez votre portfolio dès les premières semaines.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">📜</div>
+                    <h3>Certification</h3>
+                    <p>Certificat reconnu + Portfolio professionnel à la fin du programme.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">💼</div>
+                    <h3>Stage Gratuit</h3>
+                    <p>Opportunité de stage après la formation avec des partenaires professionnels.</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">💰</div>
+                    <h3>Prix Imbattable</h3>
+                    <p>Promo Noël spéciale + Paiement en 2 fois disponible!</p>
+                </div>
+
+                <div class="slide">
+                    <div class="slide-icon">🚀</div>
+                    <h3>Débute Ta Carrière</h3>
+                    <p>Opportunités freelance et emploi après le cours. Garanti!</p>
+                </div>
             </div>
 
+            <div class="slider-nav">
+                <span class="slider-dot active" onclick="currentSlide(0)"></span>
+                <span class="slider-dot" onclick="currentSlide(1)"></span>
+                <span class="slider-dot" onclick="currentSlide(2)"></span>
+                <span class="slider-dot" onclick="currentSlide(3)"></span>
+                <span class="slider-dot" onclick="currentSlide(4)"></span>
+                <span class="slider-dot" onclick="currentSlide(5)"></span>
             </div>
         </div>
     </section>
 
+    <!-- Features Section -->
     <section class="features" id="features">
         <div class="features-container">
-            <h2>Pourquoi Choisir MediaPro Academy?</h2>
+            <h2>📚 Le Programme Complet 📚</h2>
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">👨‍🏫</div>
-                    <h3>Experts Réels</h3>
-                    <p>Formateurs avec expérience YouTube, TV et agences publicitaires</p>
+                    <div class="feature-icon">🎯</div>
+                    <h3>Semaine 1: Les Bases</h3>
+                    <p>Interface Premiere Pro, importation de médias, outils fondamentaux.</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🎬</div>
-                    <h3>Projets Pratiques</h3>
-                    <p>Travaillez sur des cas réels et construisez votre portfolio</p>
+                    <div class="feature-icon">🎵</div>
+                    <h3>Semaine 2: Rythme & Son</h3>
+                    <p>Montage audio, musique, storytelling vidéo.</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">📜</div>
-                    <h3>Certification</h3>
-                    <p>Certificat reconnu + Portfolio professionnel</p>
+                    <div class="feature-icon">🎨</div>
+                    <h3>Semaine 3: Color Grading</h3>
+                    <p>Correction couleur, grading professionnel, LUTs.</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">💼</div>
-                    <h3>Stage Gratuit</h3>
-                    <p>Opportunité de stage après la formation</p>
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Semaine 4: Export Pro</h3>
+                    <p>Workflow professionnel, export YouTube/Instagram/TikTok.</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">💰</div>
-                    <h3>Prix Abordable</h3>
-                    <p>Paiement en 2 fois disponible</p>
+                    <div class="feature-icon">💻</div>
+                    <h3>Projets Réels</h3>
+                    <p>Montage de projets clients, création d'un portfolio complet.</p>
                 </div>
+
                 <div class="feature-card">
-                    <div class="feature-icon">🚀</div>
-                    <h3>Débute Ton Carrière</h3>
-                    <p>Opportunités freelance et emploi après le cours</p>
+                    <div class="feature-icon">🏆</div>
+                    <h3>Support Individuel</h3>
+                    <p>Feedback personnalisé, coaching 1-to-1 avec les formateurs.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="price-section" id="program">
-        <h2>Notre Offre Exclusive</h2>
+    <!-- Price Section -->
+    <section class="price-section" id="price">
+        <h2>💎 Offer Noël Spéciale 💎</h2>
         <div class="price-box">
             <h3>Formation 1 Mois</h3>
-            <p><strong>Prix: 1979 DH</strong></p>
-            <p>✅ 4 semaines de formation intensive</p>
+            <div class="price-tag">1979 DH</div>
+            
+            <p>✅ 4 semaines intensives</p>
             <p>✅ Tous les week-ends (Samedi & Dimanche)</p>
             <p>✅ Adobe Premiere Pro Professionnel</p>
             <p>✅ Color Grading & Audio Mix</p>
             <p>✅ Stage gratuit inclus</p>
             <p>✅ Certificat + Portfolio</p>
-            <p style="color: #ff6b00; margin-top: 15px;"><strong>Paiement en 2 fois possible</strong></p>
+            <p>✅ Accès à vie aux ressources</p>
+            
+            <div class="promo-badge">🎄 PROMO NOËL ACTIVE 🎄</div>
+            
+            <a href="https://wa.me/212651379376?text=Bonjour%2C%20je%20veux%20m%27inscrire%20à%20la%20formation%20MediaPro%20Academy%20pour%201979%20DH.%20Quels%20sont%20les%20prochains%20créneaux%20disponibles%20%3F" class="whatsapp-button">
+                ✅ S'inscrire Maintenant
+            </a>
         </div>
     </section>
 
-    <section class="form-section" id="form">
-        <div class="form-container">
-            <h2>Inscris-toi Maintenant</h2>
-            <p>Complète le formulaire et on te contactera rapidement</p>
-
-            <div class="success-message" id="successMsg">
-                ✅ Inscription réussie! On te contactera bientôt par WhatsApp et email.
-            </div>
-
-            <form id="registrationForm">
-                <div class="form-group">
-                    <label for="fullname">Nom Complet *</label>
-                    <input type="text" id="fullname" name="fullname" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone">Numéro WhatsApp/Téléphone *</label>
-                    <input type="tel" id="phone" name="phone" placeholder="06 XX XX XX XX" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="city">Ville/Région</label>
-                    <input type="text" id="city" name="city" placeholder="ex: Rabat, Casablanca">
-                </div>
-
-                <div class="form-group">
-                    <label for="level">Votre Niveau en Montage *</label>
-                    <select id="level" name="level" required>
-                        <option value="">-- Sélectionner votre niveau --</option>
-                        <option value="Débutant">Débutant (je débute)</option>
-                        <option value="Intermédiaire">Intermédiaire (j'ai des bases)</option>
-                        <option value="Avancé">Avancé (j'ai de l'expérience)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message / Questions</label>
-                    <textarea id="message" name="message" placeholder="Des questions spécifiques? Dis-nous!"></textarea>
-                </div>
-
-                <div class="form-checkbox">
-                    <input type="checkbox" id="terms" name="terms" required>
-                    <label for="terms" style="margin: 0;">J'accepte de recevoir des infos sur MediaPro Academy par WhatsApp et email</label>
-                </div>
-
-                <button type="submit" class="submit-btn">S'inscrire Maintenant</button>
-            </form>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer id="contact">
         <div class="contact-info">
-            <h3 style="color: #fff; margin-bottom: 15px;">📍 MediaPro Academy</h3>
+            <h3 style="color: #FFD700; margin-bottom: 15px;">📍 MediaPro Academy</h3>
             <p>Rabat - Hassan (Siège de l'Union Nationale des Journalistes)</p>
         </div>
+        
         <div class="contact-info">
-            <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/212651379376">06 51 37 93 76</a></p>
-            <p><strong>☎️ Téléphone:</strong> <a href="tel:0537262619">05 37 26 26 19</a></p>
-            <p><strong>📧 Email:</strong> <a href="mailto:Groupeujm@gmail.com">Groupeujm@gmail.com</a></p>
+            <p><strong style="color: #FFD700;">📱 WhatsApp Direct:</strong></p>
+            <a href="https://wa.me/212651379376">06 51 37 93 76</a>
         </div>
-        <p style="margin-top: 30px; border-top: 1px solid #333; padding-top: 20px;">© 2025 MediaPro Academy. Tous droits réservés.</p>
+
+        <div class="contact-info">
+            <p><strong style="color: #FFD700;">☎️ Téléphone:</strong></p>
+            <a href="tel:0537262619">05 37 26 26 19</a>
+        </div>
+
+        <p style="margin-top: 30px; border-top: 1px solid #FFD700; padding-top: 20px;">© 2025 MediaPro Academy. Tous droits réservés. 🎄</p>
     </footer>
 
     <script>
-        const form = document.getElementById('registrationForm');
-        const successMsg = document.getElementById('successMsg');
-
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            const fullname = document.getElementById('fullname').value;
-            const email = document.getElementById('email').value;
-            const phone = document.getElementById('phone').value;
-            const city = document.getElementById('city').value;
-            const level = document.getElementById('level').value;
-            const message = document.getElementById('message').value;
-
-            const whatsappMessage = `🎬 *NOUVELLE INSCRIPTION - MediaPro Academy* 🎬\n\n📋 *Informations du Candidat:*\n\n👤 *Nom:* ${fullname}\n📧 *Email:* ${email}\n📱 *Téléphone:* ${phone}\n🌍 *Ville:* ${city || 'Non renseigné'}\n📊 *Niveau:* ${level}\n💬 *Message:* ${message || 'Aucun message'}\n\n---\n*Date:* ${new Date().toLocaleString('fr-FR')}\n*Plateforme:* Landing Page MediaPro Academy`;
-
-            const whatsappUrl = `https://wa.me/212651379376?text=${encodeURIComponent(whatsappMessage)}`;
-
-            await sendEmail(fullname, email, phone, city, level, message);
-
-            successMsg.classList.add('show');
-
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 1500);
-
-            form.reset();
-            successMsg.classList.remove('show');
-        });
-
-        async function sendEmail(fullname, email, phone, city, level, message) {
-            try {
-                const response = await fetch('https://formsubmit.co/Groupeujm@gmail.com', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                    body: new URLSearchParams({
-                        'Nom Complet': fullname,
-                        'Email': email,
-                        'Téléphone': phone,
-                        'Ville': city,
-                        'Niveau': level,
-                        'Message': message,
-                        '_subject': '🎬 Nouvelle inscription - MediaPro Academy'
-                    })
-                });
-            } catch (error) {
-                console.log('Email non envoyé (service backend requis)');
+        // Animation Neige
+        function createSnowflakes() {
+            const snowflakesContainer = document.getElementById('snowflakes');
+            const snowflakeChars = ['❄', '❅', '❆', '✼', '✽'];
+            
+            for (let i = 0; i < 50; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.classList.add('snowflake');
+                snowflake.textContent = snowflakeChars[Math.floor(Math.random() * snowflakeChars.length)];
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                snowflake.style.animationDelay = Math.random() * 2 + 's';
+                snowflakesContainer.appendChild(snowflake);
             }
         }
+
+        createSnowflakes();
+
+        // Slider Automatique
+        let slideIndex = 0;
+        let slideTimer;
+
+        function currentSlide(n) {
+            clearTimeout(slideTimer);
+            showSlide(slideIndex = n);
+            slideTimer = setTimeout(nextSlide, 5000);
+        }
+
+        function nextSlide() {
+            showSlide(slideIndex = (slideIndex + 1) % 6);
+            slideTimer = setTimeout(nextSlide, 5000);
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            slides[n].classList.add('active');
+            dots[n].classList.add('active');
+        }
+
+        // Démarrer le slider
+        slideTimer = setTimeout(nextSlide, 5000);
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
     </script>
 </body>
 </html>
-
